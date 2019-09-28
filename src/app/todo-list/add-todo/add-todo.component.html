@@ -1,0 +1,20 @@
+<ng-container *ngTemplateOutlet="todoTpl; context: {todo: data}"></ng-container>
+
+<ng-template #todoTpl let-todo="todo">
+  <div>
+    <input type="text" [(ngModel)]="todo.name" />
+  </div>
+  <div>
+      <button type="button" (click)="addChildFor(todo)">Add Child</button>
+  </div>
+  <div *ngIf="todo.children && todo.children.length > 0" class="todo-child">
+      <h3>Sub-Todo</h3>
+    <ul>
+      <li *ngFor="let child of todo.children">
+        <ng-container *ngTemplateOutlet="todoTpl; context: {todo: child}"></ng-container>
+      </li>
+    </ul>
+  </div>
+</ng-template>
+
+<button type="button" (click)="submit()">Add Todo</button>

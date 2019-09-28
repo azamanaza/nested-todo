@@ -1,0 +1,11 @@
+<div>
+  <span><button type="button" (click)="markDone()">Done</button></span><span>{{data.name}}</span>
+  <div *ngIf="(data.children | doneItems).length > 0">
+    <h3>Sub Items</h3>
+    <ul>
+        <li *ngFor="let subItem of (data.children | doneItems)">
+          <app-todo-list-item [data]="subItem"></app-todo-list-item>
+        </li>
+    </ul>
+  </div>
+</div>
